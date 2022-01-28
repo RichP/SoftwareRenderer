@@ -2,4 +2,4 @@
 
 Loads and displays animated Quake 2 MD2 Model with directional lights and Gauraud shading.
 
-![simulator-animation](https://github.com/RichP/SoftwareRenderer/blob/main/gifs/renderer.gif)
+![simulator-animation](gifs/renderer.gif)
