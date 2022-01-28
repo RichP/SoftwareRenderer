@@ -280,17 +280,6 @@ class MD2Loader {
                                      texture: pcx?.tex ?? [],
                                      verts: frameVerts,
                                      texUVs: uvs)
-            
-//            let object = Object3D(numUVs: Int(header.numTexCoords),
-//                                  numVerts: Int(header.numVertices),
-//                                  numPolys: Int(header.numTriangles),
-//                                  texWidth: Int(header.skinWidth),
-//                                  position: Vector(0, 0, 0, 0),
-//                                  polygons: polys,
-//                                  palette: pcx?.pal ?? [Color.magenta],
-//                                  texture: pcx?.tex ?? [],
-//                                  verts: vertices,
-//                                  texUVs: uvs)
             file?.closeFile()
             return object
             
