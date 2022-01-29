@@ -1,5 +1,5 @@
 //
-//  GameApp.swift
+//  RendererScene.swift
 //  SoftRenderer
 //
 //  Created by Richard Pickup on 23/01/2022.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class GameApp: NSObject, ObservableObject {
+class RendererScene: NSObject, ObservableObject {
     @Published var uiImage: UIImage?
     var md2 = MD2Loader()
     private var md2Object: MD2Object3D?

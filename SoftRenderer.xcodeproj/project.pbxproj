@@ -23,7 +23,7 @@
 		9B17E54B2798AC80006E72C4 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E54A2798AC80006E72C4 /* Matrix.swift */; };
 		9B17E54D279A0194006E72C4 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E54C279A0194006E72C4 /* Plane.swift */; };
 		9B17E54F279A024C006E72C4 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E54E279A024C006E72C4 /* Camera.swift */; };
-		9B17E551279DA7B3006E72C4 /* GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E550279DA7B3006E72C4 /* GameApp.swift */; };
+		9B17E551279DA7B3006E72C4 /* RendererScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E550279DA7B3006E72C4 /* RendererScene.swift */; };
 		9B17E553279DB7BB006E72C4 /* Lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B17E552279DB7BB006E72C4 /* Lights.swift */; };
 		9B17E55627A06F02006E72C4 /* dragon_armour.pcx in Resources */ = {isa = PBXBuildFile; fileRef = 9B17E55427A06F02006E72C4 /* dragon_armour.pcx */; };
 		9B17E55727A06F02006E72C4 /* dragon_yellow.pcx in Resources */ = {isa = PBXBuildFile; fileRef = 9B17E55527A06F02006E72C4 /* dragon_yellow.pcx */; };
@@ -60,7 +60,7 @@
 		9B17E54A2798AC80006E72C4 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		9B17E54C279A0194006E72C4 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		9B17E54E279A024C006E72C4 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		9B17E550279DA7B3006E72C4 /* GameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameApp.swift; sourceTree = "<group>"; };
+		9B17E550279DA7B3006E72C4 /* RendererScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererScene.swift; sourceTree = "<group>"; };
 		9B17E552279DB7BB006E72C4 /* Lights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lights.swift; sourceTree = "<group>"; };
 		9B17E55427A06F02006E72C4 /* dragon_armour.pcx */ = {isa = PBXFileReference; lastKnownFileType = file; path = dragon_armour.pcx; sourceTree = "<group>"; };
 		9B17E55527A06F02006E72C4 /* dragon_yellow.pcx */ = {isa = PBXFileReference; lastKnownFileType = file; path = dragon_yellow.pcx; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 				9B17E54A2798AC80006E72C4 /* Matrix.swift */,
 				9B17E54C279A0194006E72C4 /* Plane.swift */,
 				9B17E54E279A024C006E72C4 /* Camera.swift */,
-				9B17E550279DA7B3006E72C4 /* GameApp.swift */,
+				9B17E550279DA7B3006E72C4 /* RendererScene.swift */,
 				9B17E552279DB7BB006E72C4 /* Lights.swift */,
 				9B20769C27A1865900D93B95 /* MD2Normals.swift */,
 				9B49506D27A1988300ED1A2F /* MD2Object3D.swift */,
@@ -260,7 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B17E551279DA7B3006E72C4 /* GameApp.swift in Sources */,
+				9B17E551279DA7B3006E72C4 /* RendererScene.swift in Sources */,
 				9B17E5472798A86E006E72C4 /* Polygon.swift in Sources */,
 				9B17E553279DB7BB006E72C4 /* Lights.swift in Sources */,
 				9B17E51027949112006E72C4 /* ContentView.swift in Sources */,

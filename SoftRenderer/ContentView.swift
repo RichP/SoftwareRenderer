@@ -28,7 +28,7 @@ class DisplayLink: NSObject, ObservableObject {
 
 struct ContentView: View {
     @ObservedObject var displayLink = DisplayLink.sharedInstance
-    @ObservedObject var gameApp = GameApp()
+    @ObservedObject var gameApp = RendererScene()
     init() {
         DisplayLink.sharedInstance.createDisplayLink()
         gameApp.setup(width: 320, height: 240)
