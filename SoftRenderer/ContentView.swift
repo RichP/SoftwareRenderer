@@ -47,7 +47,7 @@ struct ContentView: View {
             }
             .frame(width: 320, height: 240)
             .onChange(of: displayLink.frameChange) { _ in
-                gameApp.update()
+                gameApp.update(interval: displayLink.frameDuration)
             }
         }
     }

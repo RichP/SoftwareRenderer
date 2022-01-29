@@ -7,12 +7,85 @@
 
 import Foundation
 
+enum MD2Animation {
+    case stand
+    case run
+    case attack
+    case painA
+    case painB
+    case painC
+    case jump
+    case flip
+    case salute
+    case fallback
+    case wave
+    case point
+    case crouchStand
+    case crouchWalk
+    case crouchAttack
+    case crouchPain
+    case crouchDeath
+    case deathFallBack
+    case deathFallForward
+    case deathFallBackSlow
+    case boom
+    
+    var frames: (start: Int, end: Int, fps: Double) {
+        switch self {
+        case .stand:
+            return (0, 39, 9)
+        case .run:
+            return (  40,  45, 10 )
+        case .attack:
+            return (46,  53, 10)
+        case .painA:
+            return (54,  57,  7)
+        case .painB:
+            return (58,  61,  7)
+        case .painC:
+            return (62,  65,  7)
+        case .jump:
+            return (66,  71,  7)
+        case .flip:
+            return (72,  83,  7)
+        case .salute:
+            return (84,  94,  7)
+        case .fallback:
+            return (95, 111, 10)
+        case .wave:
+            return (112, 122,  7)
+        case .point:
+            return (123, 134,  6)
+        case .crouchStand:
+            return (135, 153, 10)
+        case .crouchWalk:
+            return (154, 159,  7)
+        case .crouchAttack:
+            return (160, 168, 10)
+        case .crouchPain:
+            return (196, 172,  7)
+        case .crouchDeath:
+            return (173, 177,  5)
+        case .deathFallBack:
+            return (178, 183,  7)
+        case .deathFallForward:
+            return (184, 189,  7)
+        case .deathFallBackSlow:
+            return (190, 197,  7)
+        case .boom:
+            return (198, 198,  5)
+        }
+    }
+}
+
 class MD2Object3D {
     let verts: [[Vertex]]
     var renderModel: Object3D
-    var interpolation: Float = 0.25
     var currentFrame: Int = 0
     var nextFrame: Int = 0
+    
+    var currentTime: CFTimeInterval = 0
+    var oldTime: CFTimeInterval = 0
     
     init(numUVs: Int,
          numVerts: Int,
@@ -39,28 +112,32 @@ class MD2Object3D {
     
     func interpolate(a: Float,b: Float,t: Float) -> Float { return a + (b - a) * t}
     
-    func renderAnimation(startFrame: Int, endFrame: Int, interpolation: Float) {
-        if self.currentFrame < startFrame
+    func renderAnimation(animation: MD2Animation, interval: CFTimeInterval) {
+        
+        if self.currentFrame < animation.frames.start
         {
-            self.currentFrame = startFrame;
+            self.currentFrame = animation.frames.start;
             self.nextFrame = self.currentFrame + 1;
         }
         
-        if(self.interpolation >= 0.9)//move on to next frame
-        {
-            self.interpolation = 0.0
+        currentTime += interval
+        
+        if currentTime - oldTime > (1.0 / animation.frames.fps) {
+            oldTime = currentTime
             self.currentFrame += 1
-            if self.currentFrame >= endFrame {//loop animation
+            if self.currentFrame >= animation.frames.end {//loop animation
                 
-                self.currentFrame = startFrame;
+                self.currentFrame = animation.frames.start;
             }
             self.nextFrame = self.currentFrame + 1;
-            if self.nextFrame >= endFrame {
-                self.nextFrame = startFrame;
+            if self.nextFrame >= animation.frames.end {
+                self.nextFrame = animation.frames.start;
             }
         }
-        let isNoInterpolation = self.interpolation.truncatingRemainder(dividingBy: 1) == 0
         
+        let interpolation = Float(animation.frames.fps * (currentTime - oldTime))
+        
+        let isNoInterpolation = interpolation.truncatingRemainder(dividingBy: 1) == 0
         
         var index = 0
         if isNoInterpolation {
@@ -73,7 +150,6 @@ class MD2Object3D {
                 index = renderModel.polygons[i].indices.2
                 renderModel.verts[index] = verts[self.currentFrame][renderModel.polygons[i].indices.2]
             }
-            self.interpolation += interpolation
             return
         }
         
@@ -146,8 +222,6 @@ class MD2Object3D {
             vertC.color = Color.white
             
             renderModel.verts[index] = vertC
-            
         }
-        self.interpolation += interpolation
     }
 }

@@ -49,16 +49,14 @@ class RendererScene: NSObject, ObservableObject {
         }
     }
     
-    func update() {
-        
-        //    DispatchQueue.global().async {
+    func update(interval: CFTimeInterval) {
         self.deg += 1
         if self.deg > 359 {
             self.deg = 0
         }
         let rad = self.deg * 0.0174533
         
-        self.md2Object?.renderAnimation(startFrame: 0, endFrame: 39, interpolation: 0.5)
+        self.md2Object?.renderAnimation(animation: .attack, interval: interval)
         
         let rot = Matrix.rotation(rotX: 0, rotY: Float(rad), rotZ: 0)
         
@@ -86,6 +84,5 @@ class RendererScene: NSObject, ObservableObject {
             self.rasterizer?.drawsolid(drawObject: object)
             self.uiImage = UIImage(frameBuffer: framebuffer)
         }
-        
     }
 }
