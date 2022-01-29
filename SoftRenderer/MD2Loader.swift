@@ -154,7 +154,7 @@ class MD2Loader {
     let md2Indentifier = 844121161
     let md2Version = 8
     
-    func loadModel(filename: String) -> MD2Object3D? {
+    func loadModel(filename: String, textureName: String) -> MD2Object3D? {
         guard let filePath = Bundle.main.url(forResource: "tris", withExtension: "md2") else {
             return nil
         }
@@ -197,10 +197,7 @@ class MD2Loader {
             }
             let tex: [MD2TexCoord] = texDat.elements()
             
-            let pcx = loadPCX(fileName: "dragon_blue")
-            
-            
-            
+            let pcx = loadPCX(fileName: textureName)
             
             var frames: [MD2Frame] = []
             frames.reserveCapacity(Int(header.numFrames) )

@@ -58,7 +58,7 @@ struct Rasterizer {
                                count: numLines)
     }
     
-    mutating func drawsolid(drawObject: MD2Object3D){
+    mutating func drawsolid(drawObject: Object3D){
         //backfaceculling
         
         var objPoints = [Vertex](repeating: Vertex(x: 0, y: 0, z: 0), count: 3)
@@ -91,7 +91,7 @@ struct Rasterizer {
         }
     }
     
-    mutating func fillPolygon(pointA: Vertex, pointB: Vertex, pointC: Vertex, drawObject: MD2Object3D) {
+    mutating func fillPolygon(pointA: Vertex, pointB: Vertex, pointC: Vertex, drawObject: Object3D) {
         let verts: [Vertex] = [pointA, pointB, pointC]
         
         var ymin = Int(verts[0].position.y)
@@ -190,7 +190,7 @@ struct Rasterizer {
         }
     }
     
-    mutating func scanEdgeTextured(vertA: Vertex, vertB: Vertex, drawObject: MD2Object3D) {
+    mutating func scanEdgeTextured(vertA: Vertex, vertB: Vertex, drawObject: Object3D) {
         
         guard vertA.position.y != vertB.position.y else {
             return
@@ -314,7 +314,7 @@ struct Rasterizer {
         }
     }
     
-    mutating func drawlinesTextured(top: Int, bottom: Int, drawObject: MD2Object3D) {
+    mutating func drawlinesTextured(top: Int, bottom: Int, drawObject: Object3D) {
         for y in top ..< bottom {
             guard y > 0, y < scanlines.count else {
                 continue

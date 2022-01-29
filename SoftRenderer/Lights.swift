@@ -99,6 +99,4 @@ struct DirectionalLight: Light {
         
         return Color(r: r,g: g,b: b);
     }
-    
-    
 }
