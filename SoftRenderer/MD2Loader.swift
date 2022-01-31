@@ -231,7 +231,7 @@ class MD2Loader {
                                    averageZ: 1.0,
                                    normal: Vector(0, 0, 1, 0),
                                    litColor: Color.white,
-                                   materialColor: Color.white)
+                                   materialColor: Color(r: 255, g: 255, b: 255))
                 
                 polys.append(poly)
             }

@@ -10,21 +10,26 @@ import SwiftUI
 
 class RendererScene: NSObject, ObservableObject {
     @Published var uiImage: UIImage?
-    var md2 = MD2Loader()
+    private var md2 = MD2Loader()
     private var md2Object: MD2Object3D?
-    var camera: Camera?
-    var camTrans: Matrix?
-    var persp: Matrix?
-    var screen: Matrix?
+    private var camera: Camera?
+    private var camTrans: Matrix?
+    private var persp: Matrix?
+    private var screen: Matrix?
     
-    var deg: Float = 0
-    var rasterizer: Rasterizer?
-    var framebuffer: FrameBuffer?
+    private var deg: Float = 0
+    private var rasterizer: Rasterizer?
+    private var framebuffer: FrameBuffer?
     
     
-    let ambientLight = AmbientLight(red: 25, green: 25, blue: 25)
-    let directionalLight = DirectionalLight(red:  255, green: 255, blue: 255, direction: Vector(0,  -1, -1, 0))
-    let directionalLight2 = DirectionalLight(red: 255, green: 0, blue: 0, direction: Vector(0, 1, 0, 0))
+    private let ambientLight = AmbientLight(red: 32, green: 32, blue: 32)
+    private let directionalLight = DirectionalLight(red:  255, green: 0, blue: 0, direction: Vector(0,  -1, -1, 0))
+    
+    private var pointLight = PointLight(red: 255, green: 0, blue: 255,
+                                        position: Point(0, -80, 0, 1),
+                                        attenuation: PointLight.Attenuation(constant: 0, linear: 1, exponant: 0))
+    
+    
     
     func setup(width: Float, height: Float) {
         camera = Camera(position: Point(0, 0, 80, 1),
@@ -56,7 +61,7 @@ class RendererScene: NSObject, ObservableObject {
         }
         let rad = self.deg * 0.0174533
         
-        self.md2Object?.renderAnimation(animation: .attack, interval: interval)
+        self.md2Object?.renderAnimation(animation: .flip, interval: interval)
         
         let rot = Matrix.rotation(rotX: 0, rotY: Float(rad), rotZ: 0)
         
@@ -65,8 +70,7 @@ class RendererScene: NSObject, ObservableObject {
         self.md2Object?.renderModel.calculateBackFacing(cam: self.camera!)
         self.md2Object?.renderModel.calculateVertexNormals()
         
-        self.md2Object?.renderModel.calculateAmbientLighting(lights: [self.ambientLight])
-        self.md2Object?.renderModel.calculateDirectionalLighting(lights: [self.directionalLight, self.directionalLight2])
+        self.md2Object?.renderModel.calculateLighting(lights: [ambientLight,directionalLight,pointLight])
         
         self.md2Object?.renderModel.transform(transMatrix: self.camTrans!, type: .translated)
         

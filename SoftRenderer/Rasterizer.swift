@@ -20,12 +20,12 @@ struct Vertex {
     
     init(x: Float, y: Float, z: Float) {
         self.position = Vector(x, y, z, 1)
-        self.color = Color(r: 255, g: 255, b: 255, a: 255)
+        self.color = Color(r: 0, g: 0, b: 0, a: 255)
         self.normal = Vector(0, 0, 0, 0)
         self.u = 0
         self.v = 0
         self.uvIndex = 0
-        self.lit = Color.white
+        self.lit = Color.black
     }
     
     init(x: Float, y: Float, z: Float, color: Color) {
@@ -35,7 +35,7 @@ struct Vertex {
         self.u = 0
         self.v = 0
         self.uvIndex = 0
-        self.lit = Color.white
+        self.lit = Color.black
     }
 }
 
@@ -45,9 +45,9 @@ struct Scanline {
 }
 
 struct Rasterizer {
-    var scanlines: [Scanline]
-    let frameBuffer: FrameBuffer
-    var backfaceCulling: Bool
+    private var scanlines: [Scanline]
+    private let frameBuffer: FrameBuffer
+    private let backfaceCulling: Bool
     
     init(numLines: Int, frameBuffer: FrameBuffer, backfaceCulling: Bool = true) {
         self.frameBuffer = frameBuffer

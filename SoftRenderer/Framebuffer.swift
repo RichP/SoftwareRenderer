@@ -9,13 +9,20 @@ import Foundation
 import UIKit
 
 struct Color {
-    var r, g, b, a: UInt8
+    let r, g, b, a: UInt8
     
     init(r: UInt8, g: UInt8, b: UInt8, a: UInt8 = 255) {
         self.r = r
         self.g = g
         self.b = b
         self.a = a
+    }
+    
+    static func +=( lhs: inout Color, rhs: Color) {
+        let red = min(Int(lhs.r) + Int(rhs.r), 255)
+        let green = min(Int(lhs.g) + Int(rhs.g), 255)
+        let blue = min(Int(lhs.b) + Int(rhs.b), 255)
+        lhs = Color(r: UInt8(red), g: UInt8(green), b: UInt8(blue), a: 255)
     }
 }
 

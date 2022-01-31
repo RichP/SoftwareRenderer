@@ -81,11 +81,11 @@ enum MD2Animation {
 class MD2Object3D {
     let verts: [[Vertex]]
     var renderModel: Object3D
-    var currentFrame: Int = 0
-    var nextFrame: Int = 0
+    private var currentFrame: Int = 0
+    private var nextFrame: Int = 0
     
-    var currentTime: CFTimeInterval = 0
-    var oldTime: CFTimeInterval = 0
+    private var currentTime: CFTimeInterval = 0
+    private var oldTime: CFTimeInterval = 0
     
     init(numUVs: Int,
          numVerts: Int,
@@ -103,14 +103,13 @@ class MD2Object3D {
                                     numVerts: numVerts,
                                     numPolys: numPolys,
                                     texWidth: texWidth,
-                                    position: position,
                                     polygons: polygons,
                                     palette: palette,
                                     texture: texture,
                                     texUVs: texUVs)
     }
     
-    func interpolate(a: Float,b: Float,t: Float) -> Float { return a + (b - a) * t}
+    
     
     func renderAnimation(animation: MD2Animation, interval: CFTimeInterval) {
         
@@ -176,7 +175,7 @@ class MD2Object3D {
             
             vertA.normal = normalCurrent.interpolated(with: normalNext, by: interpolation)
             vertA.uvIndex = renderModel.polygons[i].uvIndices.0
-            vertA.color = Color.white
+            vertA.color = Color.black
             renderModel.verts[index] = vertA
             
             index = renderModel.polygons[i].indices.1
@@ -197,7 +196,7 @@ class MD2Object3D {
             
             vertB.normal = normalCurrent.interpolated(with: normalNext, by: interpolation)
             vertB.uvIndex = renderModel.polygons[i].uvIndices.1
-            vertB.color = Color.white
+            vertB.color = Color.black
             
             renderModel.verts[index] = vertB
             
@@ -219,7 +218,7 @@ class MD2Object3D {
             
             vertC.normal = normalCurrent.interpolated(with: normalNext, by: interpolation)
             vertC.uvIndex = renderModel.polygons[i].uvIndices.2
-            vertC.color = Color.white
+            vertC.color = Color.black
             
             renderModel.verts[index] = vertC
         }

@@ -67,16 +67,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7B499D1B-634B-49A2-B639-B1B156ACE10C"
-            shouldBeEnabled = "Yes"
+            uuid = "412E6E2E-A448-42F1-89DB-406008ED3734"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoftRenderer/RendererScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "update(interval:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D60E9BF3-3727-437E-B441-6C6577B7DD42"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftRenderer/Object3D.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "calculateDirectionalLighting(lights:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "calculateLighting(lights:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

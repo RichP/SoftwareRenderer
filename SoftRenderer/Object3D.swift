@@ -20,11 +20,10 @@ struct TextureUV {
 
 let maxVerts = 2048
 struct Object3D {
-    var numUVs: Int
-    var numVerts: Int
-    var numPolys: Int
-    var texWidth: Int
-    var position: Vector
+    let numUVs: Int
+    let numVerts: Int
+    let numPolys: Int
+    let texWidth: Int
     var polygons: [Polygon]
     var palette: [Color]
     var texture: [UInt8]
@@ -78,82 +77,47 @@ struct Object3D {
     }
     
     
-    mutating func calculateAmbientLighting(lights: [AmbientLight]) {
-        for i in 0..<numPolys {
-            var red: UInt8 = 0
-            var green: UInt8 = 0
-            var blue: UInt8 = 0
-            
-            lights.forEach {
-                let tempColor = Color(r: $0.red, g: $0.green, b: $0.blue)
-                
-                //$0.calculateIntensity(poly: polygons[i])
-                
-                red += tempColor.r
-                green += tempColor.g
-                blue += tempColor.b
-            }
-            
-            if red > 255 {
-                red = 255
-            }
-            if green > 255 {
-                green = 255
-            }
-            if blue > 255{
-                blue = 255
-            }
-            polygons[i].litColor = Color.init(r: red, g: green, b: blue)
-        }
-    }
-    
-    mutating func calculateDirectionalLighting(lights: [DirectionalLight]) {
+    mutating func calculateLighting(lights: [Light]) {
         for i in 0..<numPolys {
             if polygons[i].backfacing {
                 continue
             }
+            var color1 = Color.black
+            var color2 = Color.black
+            var color3 = Color.black
             
-            var norm = transformedVerts[polygons[i].indices.0].normal
-            let col1 = directionalLightFor(normal: norm, polygon: polygons[i], lights: lights)
-            transformedVerts[polygons[i].indices.0].color = col1
+            lights.forEach {
+                if let ambient = $0 as? AmbientLight {
+                    let color = ambient.calculateIntensity(poly: polygons[i])
+                    
+                    color1 += color
+                    color2 += color
+                    color3 += color
+                    
+                } else if let directional = $0 as? DirectionalLight {
+                    let light1 = directional.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.0])
+                    let light2 = directional.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.1])
+                    let light3 = directional.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.2])
+                    
+                    color1 += light1
+                    color2 += light2
+                    color3 += light3
+                    
+                    
+                } else if let point = $0 as? PointLight {
+                    let light1 = point.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.0])
+                    let light2 = point.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.1])
+                    let light3 = point.calculateIntensity(poly: polygons[i], vert: transformedVerts[polygons[i].indices.2])
+                    color1 += light1
+                    color2 += light2
+                    color3 += light3
+                }
+            }
+            transformedVerts[polygons[i].indices.0].color = color1
+            transformedVerts[polygons[i].indices.1].color = color2
+            transformedVerts[polygons[i].indices.2].color = color3
             
-            
-            norm = transformedVerts[polygons[i].indices.1].normal
-            let col2 = directionalLightFor(normal: norm, polygon: polygons[i], lights: lights)
-            transformedVerts[polygons[i].indices.1].color = col2
-            
-            norm = transformedVerts[polygons[i].indices.2].normal
-            let col3 = directionalLightFor(normal: norm, polygon: polygons[i], lights: lights)
-            transformedVerts[polygons[i].indices.2].color = col3
-            
-            //polygons[i].litColor = col3
         }
-    }
-    
-    mutating func directionalLightFor(normal: Vector, polygon: Polygon, lights: [DirectionalLight]) -> Color {
-        var red = Int(polygon.litColor.r)
-        var green = Int(polygon.litColor.g)
-        var blue = Int(polygon.litColor.b)
-        
-        
-        lights.forEach {
-            let tempColor = $0.calculateIntensity(poly: polygon, vertNorm: normal)
-            
-            red += Int(tempColor.r)
-            green += Int(tempColor.g)
-            blue += Int(tempColor.b)
-        }
-        
-        if red > 255 {
-            red = 255
-        }
-        if green > 255 {
-            green = 255
-        }
-        if blue > 255{
-            blue = 255
-        }
-        return Color.init(r: UInt8(red), g: UInt8(green), b: UInt8(blue))
     }
     
     mutating func calculateVertexNormals() {

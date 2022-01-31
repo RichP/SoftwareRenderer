@@ -29,6 +29,7 @@
 		9B17E55727A06F02006E72C4 /* dragon_yellow.pcx in Resources */ = {isa = PBXBuildFile; fileRef = 9B17E55527A06F02006E72C4 /* dragon_yellow.pcx */; };
 		9B20769D27A1865900D93B95 /* MD2Normals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B20769C27A1865900D93B95 /* MD2Normals.swift */; };
 		9B49506E27A1988300ED1A2F /* MD2Object3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B49506D27A1988300ED1A2F /* MD2Object3D.swift */; };
+		9B49507027A8743600ED1A2F /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B49506F27A8743600ED1A2F /* MathUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		9B17E55527A06F02006E72C4 /* dragon_yellow.pcx */ = {isa = PBXFileReference; lastKnownFileType = file; path = dragon_yellow.pcx; sourceTree = "<group>"; };
 		9B20769C27A1865900D93B95 /* MD2Normals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD2Normals.swift; sourceTree = "<group>"; };
 		9B49506D27A1988300ED1A2F /* MD2Object3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD2Object3D.swift; sourceTree = "<group>"; };
+		9B49506F27A8743600ED1A2F /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				9B17E552279DB7BB006E72C4 /* Lights.swift */,
 				9B20769C27A1865900D93B95 /* MD2Normals.swift */,
 				9B49506D27A1988300ED1A2F /* MD2Object3D.swift */,
+				9B49506F27A8743600ED1A2F /* MathUtils.swift */,
 			);
 			path = SoftRenderer;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				9B17E553279DB7BB006E72C4 /* Lights.swift in Sources */,
 				9B17E51027949112006E72C4 /* ContentView.swift in Sources */,
 				9B17E5382794BB2C006E72C4 /* Framebuffer.swift in Sources */,
+				9B49507027A8743600ED1A2F /* MathUtils.swift in Sources */,
 				9B17E53A2795ECEB006E72C4 /* Rasterizer.swift in Sources */,
 				9B17E5452798A3CA006E72C4 /* Vector.swift in Sources */,
 				9B20769D27A1865900D93B95 /* MD2Normals.swift in Sources */,
