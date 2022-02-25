@@ -381,8 +381,10 @@ class MD2Loader {
 
 extension Data {
     func elements <T> () -> [T] {
-        return withUnsafeBytes {
-            Array(UnsafeBufferPointer<T>(start: $0, count: count/MemoryLayout<T>.size))
+        return withUnsafeBytes { dataBytes in
+            
+            let buffer: UnsafePointer<T> = dataBytes.baseAddress!.assumingMemoryBound(to: T.self)
+            return Array( UnsafeBufferPointer<T>(start: buffer, count: count / MemoryLayout<T>.size) )
         }
     }
 }
